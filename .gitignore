@@ -7,3 +7,6 @@ Release
 *.sdf
 *.suo
 *.swp
+*cscope.out
+*ctag
+*tag
