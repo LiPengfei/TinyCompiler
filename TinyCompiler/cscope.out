@@ -1,0 +1,760 @@
+cscope 15 D:\Desktop\TinyCompiler\TinyCompiler"               0000003403
+	@globals.h
+
+1 #i‚de‡
+_GLOBALS_H
+
+
+2 
+	#_GLOBALS_H
+
+
+	)
+
+4 
+	~<°dio.h
+>
+
+5 
+	~<°dlib.h
+>
+
+6 
+	~<˘y≥.h
+>
+
+7 
+	~<°rög.h
+>
+
+9 #i‚de‡
+FALSE
+
+
+10 
+	#FALSE
+ 0
+
+	)
+
+13 #i‚de‡
+TRUE
+
+
+14 
+	#TRUE
+ 0
+
+	)
+
+17 
+	#MAXRESERVER
+ 8
+
+	)
+
+20 
+	mENDFILE
+, 
+	mERROR
+,
+
+21 
+	mIF
+, 
+	mTHEN
+, 
+	mELSE
+, 
+	mEND
+, 
+	mREPEAT
+, 
+	mUNTIL
+, 
+	mREAD
+, 
+	mWRITE
+,
+
+22 
+	mID
+, 
+	mNUM
+,
+
+23 
+	mASSIGN
+, 
+	mEQ
+, 
+	mLT
+, 
+	mPLUS
+, 
+	mMINUS
+, 
+	mTIMES
+, 
+	mOVER
+, 
+	mLPAREN
+, 
+	mRPAREM
+, 
+	mSEMI
+
+
+24 } 
+	tTokíTy≥
+;
+
+26 
+FILE
+ *
+sour˚
+;
+
+27 
+FILE
+ *
+li°ög
+;
+
+28 
+FILE
+ *
+Code
+;
+
+30 
+löío
+;
+
+35 íum { 
+	mStmtK
+, 
+	mExpK
+ } 
+	tNodeKöd
+;
+
+36 íum {
+	mifK
+, 
+	mRïótK
+, 
+	mAssignK
+, 
+	mRódK
+, 
+	mWrôeK
+} 
+	tStmtKöd
+;
+
+37 íum {
+	mOpK
+, 
+	mC⁄°K
+, 
+	mIdK
+} 
+	tExpKöd
+;
+
+40 íum {
+	mVoid
+, 
+	mI¡îgî
+, 
+	mBoﬁón
+} 
+	tExpTy≥
+;
+
+42 
+	#MAXCHILDREN
+ 3
+
+	)
+
+43 
+	såìNode
+ {
+
+44 
+åìNode
+ * 
+	mchûd
+[
+MAXCHILDREN
+];
+
+45 
+åìNode
+ * 
+	msiblög
+;
+
+46 
+	mlöío
+;
+
+47 
+NodeKöd
+ 
+	mnodeköd
+;
+
+48 uni⁄ {
+StmtKöd
+ 
+	m°mt
+; 
+ExpKöd
+ 
+	mexp
+;} 
+	mköd
+;
+
+49 uni⁄ {
+TokíTy≥
+ 
+	m›
+; 
+	mvÆ
+; *
+	m«me
+;} 
+	m©å
+;
+
+50 
+ExpTy≥
+ 
+	mty≥
+;
+
+55 
+	tEchoSour˚
+;
+
+56 
+Tø˚Sˇn
+;
+
+57 
+Tø˚P¨£
+;
+
+58 
+Tø˚A«lyze
+;
+
+59 
+Tø˚Code
+;
+
+60 
+ERROR
+;
+
+	@scan.c
+
+1 
+	~"globÆs.h
+"
+
+2 
+	~"utû.h
+"
+
+3 
+	~"sˇn.h
+"
+
+6 
+	mSTART
+,
+
+7 
+	mINASSIGN
+,
+
+8 
+	mINCOMMENT
+,
+
+9 
+	mINNUM
+,
+
+10 
+	mINID
+,
+
+11 
+	mDONE
+,
+
+12 } 
+	tSèãTy≥
+;
+
+14 
+	gtokíSåög
+[
+MAXTOKENLEN
+ + 1];
+
+16 
+	#BUFLEN
+ 256
+
+	)
+
+18 
+	glöeBuf
+[
+BUFLEN
+];
+
+19 
+	glöïos
+ = 0;
+
+20 
+	gbufsize
+ = 0;
+
+22 
+	$gëNextCh¨
+(){
+
+23 i‡(!(
+löïos
+ < 
+bufsize
+)){
+
+24 ++
+löío
+;
+
+25 i‡(
+	`fgës
+(
+löeBuf
+, 
+BUFLEN
+ - 1, 
+sour˚
+))
+
+27 i‡(
+EchoSour˚
+) {
+
+28 
+	`Ârötf
+(
+li°ög
+, "%4d: %s", 
+löío
+, 
+löeBuf
+);
+
+30 
+bufsize
+ = 
+	`°æí
+(
+löeBuf
+);
+
+31 
+löïos
+ = 0;
+
+32  
+löeBuf
+[
+löïos
+++];
+
+35  
+EOF
+;
+
+39 
+ªuån
+ 
+löeBuf
+[
+löïos
+++];
+
+41 
+	}
+}
+
+43 
+	$ungëNextCh¨
+(){
+
+44 --
+löïos
+;
+
+45 
+	}
+}
+
+48 *
+	m°r
+;
+
+49 
+TokíTy≥
+ 
+	mtok
+;
+
+50 } 
+	gª£rvedW‹ds
+[
+MAXRESERVER
+] = {
+
+	@scan.h
+
+1 #i‚de‡
+_SCAN_H
+
+
+2 
+	#_SCAN_H
+
+
+	)
+
+4 
+	#MAXTOKENLEN
+ 40
+
+	)
+
+6 
+tokíSåög
+[
+MAXTOKENLEN
+ + 1]
+
+8 
+TokíTy≥
+ 
+gëTokí
+();
+
+	@util.c
+
+1 
+	~"globÆs.h
+"
+
+2 
+	~"utû.h
+"
+
+4 
+	$¥ötTokí
+(
+TokíTy≥
+ 
+tokí
+, c⁄° *
+tokíSåög
+){
+
+5 
+tokí
+){
+
+6 
+IF
+:
+
+7 
+THEN
+:
+
+8 
+ELSE
+:
+
+9 
+END
+:
+
+10 
+REPEAT
+:
+
+11 
+UNTIL
+:
+
+12 
+READ
+:
+
+13 
+WRITE
+:
+
+14 
+	`Ârötf
+(
+li°ög
+,
+
+16 
+tokíSåög
+);
+
+19 
+ASSIGN
+: 
+	`Ârötf
+(
+li°ög
+, ":=\n"); ;
+
+20 
+LT
+: 
+	`Ârötf
+(
+li°ög
+, "<\n"); ;
+
+21 
+EQ
+: 
+	`Ârötf
+(
+li°ög
+, "=\n"); ;
+
+22 
+LPAREN
+: 
+	`Ârötf
+(
+li°ög
+, "(\n"); ;
+
+23 
+RPAREN
+: 
+	`Ârötf
+(
+li°ög
+, ")\n"); ;
+
+24 
+SEMI
+: 
+	`Ârötf
+(
+li°ög
+, ";\n"); ;
+
+25 
+PLUS
+: 
+	`Ârötf
+(
+li°ög
+, "+\n"); ;
+
+26 
+MINUS
+: 
+	`Ârötf
+(
+li°ög
+, "-\n"); ;
+
+27 
+TIMES
+: 
+	`Ârötf
+(
+li°ög
+, "*\n"); ;
+
+28 
+OVER
+: 
+	`Ârötf
+(
+li°ög
+, "/\n"); ;
+
+29 
+ENDFILE
+: 
+	`Ârötf
+(
+li°ög
+, "EOF\n"); ;
+
+31 
+NUM
+:
+
+32 
+	`Ârötf
+(
+li°ög
+,
+
+34 
+tokíSåög
+);
+
+36 
+ID
+:
+
+37 
+	`Ârötf
+(
+li°ög
+,
+
+39 
+tokíSåög
+);
+
+41 
+ERROR
+:
+
+42 
+	`Âröt
+(
+li°ög
+,
+
+44 
+tokíSåög
+);
+
+47 
+	}
+}
+
+49 *
+	$c›ySåög
+(*
+s
+){
+
+50 
+n
+;
+
+51 *
+t
+;
+
+52 i‡(
+NULL
+ =
+s
+)  NULL;
+
+53 
+n
+ = 
+	`°æí
+(n) + 1;
+
+54 
+t
+ = 
+	`mÆloc
+(
+n
+);
+
+55 i‡(
+NULL
+ = 
+t
+){
+
+56 
+	`Ârötf
+(
+li°ög
+,
+
+58 
+löío
+);
+
+61 
+	`°r˝y
+(
+t
+, 
+s
+);
+
+63  
+t
+;
+
+64 
+	}
+}
+
+	@util.h
+
+1 #i‚de‡
+_UTIL_H_
+
+
+2 
+	#_UTIL_H_
+
+
+	)
+
+4 
+¥ötTokí
+(
+TokíTy≥
+, const *);
+
+5 *
+c›ySåög
+(*);
+
+	@
+1
+.
+0
+5
+38
+globals.h
+scan.c
+scan.h
+util.c
+util.h

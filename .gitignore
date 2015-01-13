@@ -1,0 +1,9 @@
+Debug
+Release
+*/Debug/
+*/Release/
+*.vcxproj.filters
+*.opensdf
+*.sdf
+*.suo
+*.swp
