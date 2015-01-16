@@ -32,6 +32,8 @@ EBNF:
 	mulop         -> * | /
 	factor        -> (exp) | number | identifier
 
+left recursive removal and left factoring:
+
 EBNF 定义不了结合性(associativity), 尽管可以暗示一下
 
 parenthesis 括号
