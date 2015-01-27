@@ -39,7 +39,7 @@ void printToken(TokenType token, const char *tokenString){
                     tokenString);
             break;
         case ERROR:
-            fprint(listing,
+            fprintf(listing,
                     "ERROR: %s\n",
                     tokenString);
             break;
@@ -83,9 +83,9 @@ char *copyString(char *s){
     int n;
     char *t;
     if (NULL == s) return NULL;
-    n = strlen(n) + 1;
+    n = strlen(s) + 1;
     t = malloc(n);
-    if (NULL = t){
+    if (NULL == t){
         fprintf(listing,
                 "Out of memory error at line %d\n",
                 lineno);
@@ -96,11 +96,12 @@ char *copyString(char *s){
     return t;
 }
 
-static indentno = 0;
+static int indentno = 0;
 #define INDENT indentno += 2
 #define UNINDENT indentno -= 2
 
 static void printSpaces() {
+    int i;
     for (i = 0; i < indentno; ++i) {
         fprintf(listing, " ");
     }

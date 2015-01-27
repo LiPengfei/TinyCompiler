@@ -1,5 +1,5 @@
-#ifndef _GLOBALS_H
-#define _GLOBALS_H 
+#ifndef _GLOBALS_H_
+#define _GLOBALS_H_
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -20,7 +20,7 @@ typedef enum {
     ENDFILE, ERROR,
     IF, THEN, ELSE, END, REPEAT, UNTIL, READ, WRITE,
     ID, NUM,
-    ASSIGN, EQ, LT, PLUS, MINUS, TIMES, OVER, LPAREN, RPAREM, SEMI
+    ASSIGN, EQ, LT, PLUS, MINUS, TIMES, OVER, LPAREN, RPAREN, SEMI
 } TokenType;
 
 extern FILE *source;
@@ -33,7 +33,7 @@ extern int lineno;
 /**************syntax tree for parsing**************/
 /***************************************************/
 typedef enum { StmtK, ExpK } NodeKind;
-typedef enum {ifK, RepeatK, AssignK, ReadK, WriteK} StmtKind;
+typedef enum {IfK, RepeatK, AssignK, ReadK, WriteK} StmtKind;
 typedef enum {OpK, ConstK, IdK} ExpKind;
 
 /* ExpType is used for type checking */
@@ -48,7 +48,8 @@ typedef struct treeNode {
     union {StmtKind stmt; ExpKind exp;} kind;
     union {TokenType op; int val; char *name;} attr;
     ExpType type;  /* for type checking of exps*/
-}
+} TreeNode;
+
 /***************************************************/
 /***************Flags for tracing*******************/
 /***************************************************/
@@ -57,6 +58,6 @@ extern int TraceScan;
 extern int TraceParse;
 extern int TraceAnalyze;
 extern int TraceCode;
-extern int ERROR;
+extern int Error;
 
 #endif

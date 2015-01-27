@@ -121,7 +121,7 @@ TreeNode *assign_stmt() {
 TreeNode *read_stmt() {
     TreeNode *t = newStmtNode(ReadK);
     match(READ);
-    if (t != NULL && t == ID) {
+    if (t != NULL && token == ID) {
         t->attr.name = copyString(tokenString);
     }
     match(ID);
@@ -190,7 +190,7 @@ TreeNode *factor() {
         case LPAREN:
             match(LPAREN);
             t = exp();
-            match(RPAREM);
+            match(RPAREN);
             break;
         case NUM:
             t = newExpNode(ConstK);

@@ -36,7 +36,7 @@ static char getNextChar(void){
         }
     }
     else {
-        reutrn lineBuf[linepos++];
+        return lineBuf[linepos++];
     }
 }
 
@@ -59,9 +59,10 @@ static struct{
 };
 
 static TokenType reservedLookup (char *s){
+    int i;
     for (i = 0; i < MAXRESERVED; ++i) {
         if (!strcmp(s, reservedWords[i].str))
-            reutrn reservedWords[i].tok;
+            return reservedWords[i].tok;
     }
     return ID;
 }
@@ -132,7 +133,7 @@ TokenType getToken(void){
                 if (c == '}') state = START;
                 // There need to do something. If I can't get a { forever?
                 else if (c == EOF) {
-                    state = Done;
+                    state = DONE;
                     currentToken = ERROR;
                 }
                 break;
@@ -162,8 +163,8 @@ TokenType getToken(void){
                 }
                 break;
             case DONE:
-            case default:
-                fprint(listing, "Scanner Bug: state = %d\n", state);
+            default:
+                fprintf(listing, "Scanner Bug: state = %d\n", state);
                 state = DONE;
                 currentToken = ERROR;
                 break;
