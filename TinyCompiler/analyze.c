@@ -92,7 +92,7 @@ static void checkNode(TreeNode *t){
                 case WriteK:
                     break;
                 case RepeatK:
-                    break
+					break;
                 default:
                     break;
             }
@@ -105,7 +105,7 @@ static void checkNode(TreeNode *t){
                         typeError(t, "Op applied to non-interger");
                     }
                     if (t->attr.op == EQ || t->attr.op == LT) {
-                        t->type == Boolean;
+                        t->type = Boolean;
                     }
                     else{
                         t->type = Interger;

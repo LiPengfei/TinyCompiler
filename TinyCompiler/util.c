@@ -48,7 +48,6 @@ void printToken(TokenType token, const char *tokenString){
 
 TreeNode *newStmtNode(StmtKind kind){
     TreeNode *t = (TreeNode *)malloc(sizeof(TreeNode));
-    int i = 0;
 
     if (NULL == t){
         fprintf(listing, "Out of memory error at line %d", lineno);
@@ -65,7 +64,6 @@ TreeNode *newStmtNode(StmtKind kind){
 
 TreeNode *newExpNode(ExpKind kind){
     TreeNode *t = (TreeNode *)malloc(sizeof(TreeNode));
-    int i;
     if (NULL == t) {
         fprintf(listing, "Out of memory error at line %d", lineno);
     }
