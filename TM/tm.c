@@ -172,7 +172,7 @@ int getNum(void){
             getCh();
         }
         num = num + (term * sign);
-    }while ((nonBlank()) && (ch == '+' || (ch == '-')));
+    }while ((nonBlank()) && ((ch == '+') || (ch == '-')));
 
     return temp;
 }
@@ -245,8 +245,8 @@ int readInstructions (void) {
             in_Line[++lineLen] = '\0';
         }
 
-        if (nonBlank() && in_Line[inCol] != '*') {
-            return TRUE;
+		if (atEOL() || in_Line[inCol] == '*') {
+			continue;
         }
 
         if (!getNum()){
@@ -445,6 +445,7 @@ int doCommand(void){
         printf("Enter command: ");
         fflush(stdin);
         gets(in_Line);
+		lineLen = strlen(in_Line);
         inCol = 0;
     } while (!getWord());
 
@@ -569,9 +570,9 @@ int doCommand(void){
                 iloc = reg[PC_REG];
                 if (traceflag) {
                     writeInstruction(iloc);
-					stepResult = stepTM();
-                    ++stepcnt;
-                }
+				}
+				stepResult = stepTM();
+				++stepcnt;
             }
             if (icountflag) {
                 printf("Number of instructions executed = %d\n", stepcnt);
@@ -582,9 +583,9 @@ int doCommand(void){
                 iloc = reg[PC_REG];
                 if (traceflag) {
                     writeInstruction(iloc);
-                    stepResult = stepTM();
-                    --stepcnt;
-                }
+				}
+				stepResult = stepTM();
+				--stepcnt;
             }
         }
         printf("%s\n", stepResultTab[stepResult]);
