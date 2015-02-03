@@ -110,7 +110,7 @@ int opClass(int c){
 
 void writeInstruction(int loc){
     printf("%5d: ", loc);
-    if ((loc > 0) && (loc <IADDR_SIZE)) {
+    if ((loc >= 0) && (loc <IADDR_SIZE)) {
         printf("%6s%3d,", opCodeTab[iMem[loc].iop], iMem[loc].iarg1);
         switch (opClass(iMem[loc].iop)){
             case opclRR:
@@ -299,7 +299,7 @@ int readInstructions (void) {
                 if (!skipCh(',')) {
                     return error("Missing comma", lineNo, loc);
                 }
-                if ((!getNum()) || (num < 0) || (num >= NO_REGS)) {
+                if (!getNum()) {
                     return error("Bad displacement", lineNo, loc);
                 }
                 arg2 = num;

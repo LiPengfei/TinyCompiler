@@ -164,8 +164,8 @@ static void cGen(TreeNode *tree){
             default:
                 break;
         }
+		cGen(tree->sibling);
     }
-    cGen(tree->sibling);
 }
 
 void codeGen(TreeNode * syntaxTree, char *codefile){
@@ -177,6 +177,7 @@ void codeGen(TreeNode * syntaxTree, char *codefile){
     emitComment("Standard prelude:");
     emitRM("LD", mp, 0, gp, "load maxaddress from location 0");
     emitRM("ST", ac, 0, gp, "clear location 0");
+	emitComment("End of standard prelude.");
     cGen(syntaxTree);
     emitComment("End of Execution.");
     emitRO("HALT", 0, 0, 0, "");

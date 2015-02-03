@@ -48,12 +48,17 @@ void printToken(TokenType token, const char *tokenString){
 
 TreeNode *newStmtNode(StmtKind kind){
     TreeNode *t = (TreeNode *)malloc(sizeof(TreeNode));
+//	int i = 0;
 
     if (NULL == t){
         fprintf(listing, "Out of memory error at line %d", lineno);
     }
     else{
-        memset(t, sizeof(TreeNode), 0);
+		memset(t, 0, sizeof(TreeNode));
+// 		for (i = 0; i < MAXCHILDREN; ++i) {
+// 			t->child[i] = NULL;
+// 		}
+		t->sibling = NULL;
         t->nodekind  = StmtK;
         t->kind.stmt = kind;
         t->lineno    = lineno;
@@ -64,11 +69,17 @@ TreeNode *newStmtNode(StmtKind kind){
 
 TreeNode *newExpNode(ExpKind kind){
     TreeNode *t = (TreeNode *)malloc(sizeof(TreeNode));
+//	int i = 0;
+
     if (NULL == t) {
         fprintf(listing, "Out of memory error at line %d", lineno);
     }
     else{
-        memset(t, sizeof(TreeNode), 0);
+		memset(t, 0, sizeof(TreeNode));
+// 		for (i = 0; i < MAXCHILDREN; ++i) {
+// 			t->child[i] = NULL;
+// 		}
+		t->sibling = NULL;
         t->nodekind = ExpK;
         t->kind.exp = kind;
         t->lineno   = lineno;
@@ -122,7 +133,7 @@ void printTree(TreeNode *tree) {
                     fprintf(listing, "Assign to %s\n", tree->attr.name);
                     break;
                 case ReadK:
-                    fprintf(listing, "Raad: %s\n", tree->attr.name);
+                    fprintf(listing, "Read: %s\n", tree->attr.name);
                     break;
                 case WriteK:
                     fprintf(listing, "Write: %s\n", tree->attr.name);

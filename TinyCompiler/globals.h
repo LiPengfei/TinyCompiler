@@ -11,7 +11,7 @@
 #endif
 
 #ifndef TRUE
-#define TRUE 0
+#define TRUE 1
 #endif
 
 #define MAXRESERVED 8
@@ -41,8 +41,8 @@ typedef enum {Void, Interger, Boolean} ExpType;
 
 #define MAXCHILDREN 3
 typedef struct treeNode {
-    struct treeNode * child[MAXCHILDREN];
-    struct treeNode * sibling;
+    struct treeNode *child[MAXCHILDREN];
+    struct treeNode *sibling;
     int lineno;
     NodeKind nodekind;
     union {StmtKind stmt; ExpKind exp;} kind;
