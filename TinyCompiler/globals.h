@@ -25,14 +25,14 @@ typedef enum {
 
 extern FILE *source;
 extern FILE *listing;
-extern FILE *Code;
+extern FILE *code;
 
 extern int lineno;
 
 /***************************************************/
 /**************syntax tree for parsing**************/
 /***************************************************/
-typedef enum { StmtK, ExpK } NodeKind;
+typedef enum {StmtK, ExpK} NodeKind;
 typedef enum {IfK, RepeatK, AssignK, ReadK, WriteK} StmtKind;
 typedef enum {OpK, ConstK, IdK} ExpKind;
 

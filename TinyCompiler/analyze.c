@@ -124,3 +124,7 @@ static void checkNode(TreeNode *t){
             break;
     }
 }
+
+void typeCheck(TreeNode * syntaxTree){
+	traverse(syntaxTree, nullPorc, checkNode);
+}

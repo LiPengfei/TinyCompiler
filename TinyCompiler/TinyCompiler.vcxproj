@@ -67,6 +67,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="analyze.h" />
+    <ClInclude Include="cgen.h" />
+    <ClInclude Include="code.h" />
     <ClInclude Include="globals.h" />
     <ClInclude Include="parse.h" />
     <ClInclude Include="scan.h" />
@@ -75,6 +77,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="analyze.c" />
+    <ClCompile Include="cgen.c" />
+    <ClCompile Include="code.c" />
+    <ClCompile Include="main.c" />
     <ClCompile Include="parse.c" />
     <ClCompile Include="scan.c" />
     <ClCompile Include="symtab.c" />
@@ -82,6 +87,9 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="tiny_grammer.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cscope.out" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
