@@ -77,7 +77,7 @@ int reg[NO_REGS];
 char *opCodeTab[] = {
     "HALT", "IN", "OUT", "ADD", "SUB", "MUL", "DIV", "????",
     "LD", "ST", "????",
-    "LDA", "LDC", "JLT", "JLE", "JGT", "JGE", "JEQ", "JEQ", "JNE", "????",
+    "LDA", "LDC", "JLT", "JLE", "JGT", "JGE", "JEQ", "JNE", "????",
 };
 
 char *stepResultTab[] = {
