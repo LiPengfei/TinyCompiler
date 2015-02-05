@@ -1,3 +1,9 @@
+/*
+	optimizations:
+	1. use register to store temp;
+	2. use register to store var which has a lot of references (needs help-information when analyze and creatt symbol table;
+	3. code optimization for if and repeat statement;
+*/
 #include "globals.h"
 #include "symtab.h"
 #include "code.h"
