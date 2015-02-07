@@ -1,16 +1,15 @@
 # -include TinyCompiler/Makefile  # - added ahead means igonoring error(can't find the file)
 
-.PHONY: Debug Release
-
-Debug:
-	cd TinyCompiler
-	make -f Makefile.Debug
-	cd ..
-
-Release:
-	cd TinyCompiler
-	make -f Makefile.Release
-	cd ..
+#MAKE=make -C
+#.PHONY: Debug Release
+#
+##default is debug
+#Debug: 
+#	$(MAKE) -C TinyCompiler
+#	# cd TinyCompiler && make -f Makefile.Debug
+#
+#Release:
+#	cd TinyCompiler && $(MAKE) -f Makefile.Release
 
 
 
@@ -42,3 +41,54 @@ Release:
 #   	$(CC) -c $(CFLAGS) lose.c -o lose.o
 #   foo.elc : foo.el
 #   	emacs -f batch-byte-compile foo.el
+#
+#
+# notice
+#   xxxx: xxxx
+#   	cd aa
+#   	pwd
+#   (echo old)
+#   is not the same as
+#
+#   xxxx: xxxx
+#   	cd aa;  pwd
+#   (echo aa)
+
+ifndef JOBS
+	JOBS=4
+endif
+
+.PHONY: all
+all: \
+	debug \
+	release
+
+
+.PHONY: debug
+debug: \
+	tinycompiler.debug \
+	simplecalc.debug
+
+
+.PHONY: release
+release: \
+	tinycompiler.release \
+	simplecalc.release
+
+
+tinycompiler.debug : 
+	$(MAKE) -j$(JOBS) -C TinyCompiler/ -f tinycompiler.mak CFG="debug"
+
+tinycompiler.release : 
+	$(MAKE) -j$(JOBS) -C TinyCompiler/ -f tinycompiler.mak CFG="release"
+
+simplecalc.debug : 
+	$(MAKE) -j$(JOBS) -C SimpleCalc/ -f tinycompiler.mak CFG="debug"
+
+simplecalc.release : 
+	$(MAKE) -j$(JOBS) -C SimpleCalc/ -f tinycompiler.mak CFG="release"
+
+.PHONY: clean
+clean:
+	$(MAKE) -C TinyCompiler/ -f tinycompiler.mak clean
+	$(MAKE) -C SimpleCalc/ -f simplecalc.mak clean

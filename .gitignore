@@ -1,5 +1,5 @@
-Debug
-Release
+Debug/*
+Release/*
 */Debug/
 */Release/
 *.vcxproj.filters
@@ -11,3 +11,4 @@ Release
 *ctag
 *tags
 *.user
+*.o

@@ -85,6 +85,5 @@ int main(int argc, const char *argv[]) {
 #endif
 #endif
     fclose(source);
-	getch();
     return 0;
 }

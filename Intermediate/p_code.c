@@ -2,7 +2,7 @@
 /* general code */
 
 void genCode(SyntaxTree t){
-    char codestr[CODESTR];
+    char codestr[CODESIZE];
 
     if (t != NULL) {
         switch (t->kind){
@@ -39,7 +39,7 @@ void genCode(SyntaxTree t){
 }
 
 void genCode(SyntaxTree t, int isAddr){
-    char codestr[CODESTR];
+    char codestr[CODESIZE];
     if(t != NULL){
         switch (t->kind){
             case OpKind:
@@ -147,6 +147,56 @@ void genCode(SyntaxTree t, char *label){
                 break;
             case OtherKind:
                 emitCode("Other");
+                break;
+            default:
+                emitCode("Error");
+                break;
+        }
+    }
+}
+
+void genCode(SyntaxTree t){
+    char codestr[CODESIZE];
+    SyntaxTree p;
+    if (t != NULL) {
+        switch(t->kind){
+            case PrgK:
+                genCode(t->lchild);
+                genCode(t->rchild);
+                break;
+            case FnK:
+                sprintf(codestr, "%s %s", "ent", t->name);
+                emitCode(codestr);
+                genCode(t->rchild);
+                emitCode("ret");
+                if (t->sibling != NULL) {
+                    genCode(t->sibling);
+                }
+                break;
+            case ParamK:
+                break;
+            case ConstK:
+                sprintf(codestr, "%s %s", "ldc", t->val);
+                emitCode(codestr);
+                break;
+            case PlusK:
+                genCode(t->lchild);
+                genCode(t->rchild);
+                emitCode("adi");
+                break;
+            case IdK:
+                sprintf(codestr, "%s %s", "lod", t->val);
+                emitCode(codestr);
+                break;
+            case CallK:
+                emitCode("mst");
+                p = t->rchild;
+                while (p != NULL) {
+                    genCode(p);
+                    p = p->sibling;
+                }
+                sprintf(codestr, "%s %s", "cup", t->name);
+                emitCode(codestr);
                 break;
             default:
                 emitCode("Error");
