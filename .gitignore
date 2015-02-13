@@ -7,8 +7,7 @@ Release/*
 *.sdf
 *.suo
 *.swp
-*cscope.out
-*ctag
+*cscope.*
 *tags
 *.user
 *.o
