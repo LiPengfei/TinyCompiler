@@ -12,3 +12,5 @@ Release/*
 *tags
 *.user
 *.o
+*.d
+*.out

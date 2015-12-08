@@ -8,19 +8,15 @@ CXX=g++
 CXXFLAGS=$(CFLAGS)
 LD=$(CXX)
 LDFLAGS:=$(CFLAGS)
-AR=ar
-ARFLAGS=rcs
 
 ifeq "$(CFG)" "debug"
-	CFLAGS+= -pipe -Wall -Wno-unknown-pragmas -Wno-unused -Wno-reorder -O0 -fexceptions -g -fstack-protector  -D_DEBUG  -I. -I../include -I../include/devbase -I../../base/include -I../../devenv/include
-	# TARGET=../lib/debug/libdevbased.a
+	CFLAGS+= -pipe -Wall -Wno-unknown-pragmas -Wno-unused -Wno-reorder -O0 -fexceptions -g -fstack-protector  -D_DEBUG
 	target=TinyCompilerD
 endif
 
 ifeq "$(CFG)" "release"
-	CFLAGS+= -pipe -Wall -Wno-unknown-pragmas -Wno-unused -Wno-reorder -O2 -fexceptions -g -fstack-protector  -DNDEBUG  -I. -I../include -I../include/devbase -I../../base/include -I../../devenv/include
-	# TARGET=../lib/release/libdevbase.a
-	TARGET=TinyCompilerR
+	CFLAGS+= -pipe -Wall -Wno-unknown-pragmas -Wno-unused -Wno-reorder -O2 -fexceptions -g -fstack-protector  -DNDEBUG
+	target=TinyCompilerR
 endif
 
 .PHONY: all

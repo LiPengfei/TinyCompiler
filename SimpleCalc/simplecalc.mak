@@ -8,18 +8,14 @@ CXX=g++
 CXXFLAGS=$(CFLAGS)
 LD=$(CXX)
 LDFLAGS:=$(CFLAGS)
-AR=ar
-ARFLAGS=rcs
 
 ifeq "$(CFG)" "debug"
-	CFLAGS+= -pipe -Wall -Wno-unknown-pragmas -Wno-unused -Wno-reorder -O0 -fexceptions -g -fstack-protector  -D_DEBUG  -I. -I../include -I../include/devbase -I../../base/include -I../../devenv/include
-	# TARGET=../lib/debug/libdevbased.a
+	CFLAGS+= -pipe -Wall -Wno-unknown-pragmas -Wno-unused -Wno-reorder -O0 -fexceptions -g -fstack-protector  -D_DEBUG
 	target=SimpleCalcD
 endif
 
 ifeq "$(CFG)" "release"
-	CFLAGS+= -pipe -Wall -Wno-unknown-pragmas -Wno-unused -Wno-reorder -O2 -fexceptions -g -fstack-protector  -DNDEBUG  -I. -I../include -I../include/devbase -I../../base/include -I../../devenv/include
-	# TARGET=../lib/release/libdevbase.a
+	CFLAGS+= -pipe -Wall -Wno-unknown-pragmas -Wno-unused -Wno-reorder -O2 -fexceptions -g -fstack-protector  -DNDEBUG
 	TARGET=SimpleCalcR
 endif
 
@@ -42,21 +38,27 @@ endif
 
 %.d:%.c
 	@set -e; rm -f $@;\
-	$(CC) -MM $(CPPFLAGS) $< > $@.$$$$; \
+	$(CC) -MM $(CFLAGS) $< > $@.$$$$; \
+	sed 's/\($*\)\.o[ :]*/\1.o $@ :/g' < $@.$$$$ > $@; \
+	rm -f $@.$$$$
+
+%.d:%.cpp
+	@set -e; rm -f $@;\
+	$(CC) -MM $(CFLAGS) $< > $@.$$$$; \
 	sed 's/\($*\)\.o[ :]*/\1.o $@ :/g' < $@.$$$$ > $@; \
 	rm -f $@.$$$$
 
 util=main.cpp
 
 sources=$(util)
-objs=$(patsubst %.cxx,%.o,$(patsubst %.cpp,%.o,$(patsubst %.cc,%.o,$(patsubst %.c,%.o,$(filter %.c %.cc %.cpp %.cxx,$(sources))))))
+objects=$(patsubst %.cxx,%.o,$(patsubst %.cpp,%.o,$(patsubst %.cc,%.o,$(patsubst %.c,%.o,$(filter %.c %.cc %.cpp %.cxx,$(sources))))))
 
-$(target):$(objs)
+$(target):$(objects)
 	mkdir -p "$(dir $(target))"
-	$(CXX) $(CXXFLAGS) -o $@ $(objs)
+	$(CXX) $(CXXFLAGS) -o $@ $(objects)
 
 .PHONY: clean
 clean:
-	-rm -f $(objs) $(target) *.d
+	-rm -f $(objects) $(target) *.d
 
--include $(sources:.c=.d)
+-include $(sources:.cpp=.d)
